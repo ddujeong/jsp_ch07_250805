@@ -17,6 +17,7 @@
 %>
 	<h2><%=sid %>님 로그인 성공하셨습니다.</h2>
 	<hr>
-	<a href="logout.jsp">로그아웃 페이지로 이동</a>
+	<a href="logout.jsp">로그아웃 페이지로 이동</a><br><br>
+	<a href="main.jsp"> 메인 페이지로 이동</a>
 </body>
 </html>

@@ -21,11 +21,15 @@
 <%
 	Cookie[] cookies = request.getCookies(); // 기존에 존재하는 쿠키 가져오기
 	// 사이트 첫 방문시 또는 쿠키 유효시간 지난 후 방문시 cookies == null 
-	String savedId = "";
+	String savedId = ""; // 자동으로 불러올 아이디
+	String savedPw = ""; // 자동으로 불러올 비밀번호
 	if(cookies != null){ // 쿠키가 존재할 때만 쿠키 추출
 		for(Cookie cookie : cookies){
 			if(cookie.getName().equals("saveId")){ // 쿠키 값중 이름이 saveId 인 쿠키를 추출
 				savedId = cookie.getValue(); // 쿠키 saveId 이름으로 저장된 실제 아이디 (tiger) 값 가져오기
+			} 
+			if(cookie.getName().equals("savePw")){ // 쿠키 값중 이름이 saveId 인 쿠키를 추출
+				savedPw = cookie.getValue(); // 쿠키 saveId 이름으로 저장된 실제 비밀번호 (12345) 값 가져오기
 			} 
 		}
 	}
@@ -34,8 +38,8 @@
 	<hr>
 	<form action="loginOk.jsp" name = "loginForm" method="post" onsubmit="return checkForm()">
 	아이디 : <input type="text" name="id" value="<%= savedId %>" > <br><br>
-	비밀번호 : <input type="text" name="pw"> <br><br>
-	<input type="checkbox" name= "rememberId" <%=(savedId.isEmpty() ? "" :"checked") %>>아이디 저장
+	비밀번호 : <input type="password" name="pw"  value="<%= savedPw %>"> <br><br>
+	<input type="checkbox" name= "rememberId" <%=(savedId.isEmpty() ? "" :"checked") %>>자동 로그인
 	<input type="submit" value="로그인"><br><br>
 	</form>
 </body>
